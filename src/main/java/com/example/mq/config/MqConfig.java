@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @date: 2018/8/6
  * @description: mq配置文件
  */
-@Configuration
+// @Configuration
 public class MqConfig {
 
     @Bean

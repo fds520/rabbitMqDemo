@@ -1,6 +1,6 @@
 package com.example.mq.controller;
 
-import com.example.mq.component.HelloSend1;
+import com.example.mq.component.HelloSend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class RabbitDemo {
 
     @Autowired
-    private HelloSend1 helloSend1;
+    private HelloSend helloSend;
 
-    @PostMapping("/hello")
-    public void hello() {
-        helloSend1.send();
+    @PostMapping("/oneToOne")
+    public void oneToOne() {
+        helloSend.sendOneToOne();
+    }
+
+    @PostMapping("/oneToMany")
+    public void oneToMany() {
+        helloSend.sendOneToMany();
     }
 }

@@ -51,4 +51,20 @@ public class HelloSend {
         userInfo.setJobs(jobs);
         this.rabbitTemplate.convertAndSend("testOneToMany", userInfo);
     }
+
+    /**
+     * 多对多队列发送
+     */
+    public void sendManyToMany() {
+        System.out.println("多对多测试mq消息生产" + new Date().getTime());
+        UserInfo userInfo = new UserInfo();
+        userInfo.setCode("多对多测试mq消息生产");
+        userInfo.setName("东野圭吾");
+        userInfo.setCreateDate(new Date());
+        List<String> jobs = new ArrayList<>();
+        jobs.add("乒乓蛋");
+        jobs.add("足球");
+        userInfo.setJobs(jobs);
+        this.rabbitTemplate.convertAndSend("testManyToMany", userInfo);
+    }
 }

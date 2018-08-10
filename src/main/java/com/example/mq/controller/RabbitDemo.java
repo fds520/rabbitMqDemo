@@ -28,4 +28,9 @@ public class RabbitDemo {
     public void oneToMany() {
         helloSend.sendOneToMany();
     }
+
+    @PostMapping("/manyToMany")
+    public void manyToMany() {
+        helloSend.sendManyToMany();
+    }
 }

@@ -19,18 +19,34 @@ public class RabbitDemo {
     @Autowired
     private HelloSend helloSend;
 
+    /**
+     * 单生产者和单消费者
+     */
     @PostMapping("/oneToOne")
     public void oneToOne() {
         helloSend.sendOneToOne();
     }
 
+    /**
+     * 单生产者-多消费者
+     */
     @PostMapping("/oneToMany")
     public void oneToMany() {
-        helloSend.sendOneToMany();
+        for (int i = 0; i < 15; i++) {
+
+            helloSend.sendOneToMany();
+        }
     }
 
+    /**
+     * 多生产者-多消费者
+     */
     @PostMapping("/manyToMany")
     public void manyToMany() {
-        helloSend.sendManyToMany();
+        for (int i = 0; i < 15; i++) {
+
+            helloSend.sendManyToMany1();
+            helloSend.sendManyToMany2();
+        }
     }
 }

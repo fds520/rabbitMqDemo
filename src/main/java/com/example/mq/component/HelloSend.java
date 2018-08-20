@@ -12,10 +12,12 @@ import java.util.List;
 /**
  * @author: fds
  * @date: 2018/8/6
- * @description: 描述
+ * @description: 生产消息组件
  */
 @Component
 public class HelloSend {
+
+    private static Integer i = 1;
 
     @Autowired
     private AmqpTemplate rabbitTemplate;
@@ -24,9 +26,9 @@ public class HelloSend {
      * 一对一队列发送
      */
     public void sendOneToOne() {
-        System.out.println("一对一测试mq消息生产" + new Date().getTime());
+        System.out.println("一对一测试mq消息生产" + i);
         UserInfo userInfo = new UserInfo();
-        userInfo.setCode("一对一测试mq消息生产");
+        userInfo.setCode("一对一测试mq消息生产" + i++);
         userInfo.setName("东野圭吾");
         userInfo.setCreateDate(new Date());
         List<String> jobs = new ArrayList<>();
@@ -40,9 +42,9 @@ public class HelloSend {
      * 一对多队列发送
      */
     public void sendOneToMany() {
-        System.out.println("一对多测试mq消息生产" + new Date().getTime());
+        System.out.println("一对多测试mq消息生产" + i);
         UserInfo userInfo = new UserInfo();
-        userInfo.setCode("一对多测试mq消息生产");
+        userInfo.setCode("一对一测试mq消息生产" + i++);
         userInfo.setName("东野圭吾");
         userInfo.setCreateDate(new Date());
         List<String> jobs = new ArrayList<>();
@@ -55,10 +57,26 @@ public class HelloSend {
     /**
      * 多对多队列发送
      */
-    public void sendManyToMany() {
-        System.out.println("多对多测试mq消息生产" + new Date().getTime());
+    public void sendManyToMany1() {
+        System.out.println("多对多测试mq消息生产一" + i);
         UserInfo userInfo = new UserInfo();
-        userInfo.setCode("多对多测试mq消息生产");
+        userInfo.setCode("多对多测试mq消息生产" + + i++);
+        userInfo.setName("东野圭吾");
+        userInfo.setCreateDate(new Date());
+        List<String> jobs = new ArrayList<>();
+        jobs.add("乒乓蛋");
+        jobs.add("足球");
+        userInfo.setJobs(jobs);
+        this.rabbitTemplate.convertAndSend("testManyToMany", userInfo);
+    }
+
+    /**
+     * 多对多队列发送
+     */
+    public void sendManyToMany2() {
+        System.out.println("多对多测试mq消息生产二" + i);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setCode("多对多测试mq消息生产" + i++);
         userInfo.setName("东野圭吾");
         userInfo.setCreateDate(new Date());
         List<String> jobs = new ArrayList<>();

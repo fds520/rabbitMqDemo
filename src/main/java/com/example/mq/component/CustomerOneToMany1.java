@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 /**
  * @author: fds
  * @date: 2018/8/6
- * @description: 消费者一对一
+ * @description: 消费者一对多
  */
 @Component
-@RabbitListener(queues = "testOneToOne")
-public class TestOneToOne {
+@RabbitListener(queues = "testOneToMany")
+public class CustomerOneToMany1 {
 
     @RabbitHandler
     public void process(UserInfo userInfo) {
-        System.out.println("测试mq消费者2  : " + userInfo);
+        System.out.println("测试mq消费者一对多1  : " + userInfo);
     }
 }

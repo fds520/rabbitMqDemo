@@ -35,7 +35,7 @@ public class HelloSend {
         jobs.add("乒乓蛋");
         jobs.add("足球");
         userInfo.setJobs(jobs);
-        this.rabbitTemplate.convertAndSend("testOneToOne", userInfo);
+        this.rabbitTemplate.convertAndSend("spring-boot-queue", userInfo);
     }
 
     /**

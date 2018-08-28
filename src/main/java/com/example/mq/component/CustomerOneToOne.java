@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @description: 消费者一对一
  */
 @Component
-@RabbitListener(queues = "testOneToOne")
+@RabbitListener(queues = "spring-boot-queue")
 public class CustomerOneToOne {
 
     @RabbitHandler

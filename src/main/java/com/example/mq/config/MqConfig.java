@@ -92,4 +92,26 @@ public class MqConfig {
         factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);             //开启手动 ack
         return factory;
     }
+
+    /*
+    *
+    * @Bean
+    public SimpleMessageListenerContainer messageContainer() {
+        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory());
+        container.setQueues(queue());
+        container.setExposeListenerChannel(true);
+        container.setMaxConcurrentConsumers(1);
+        container.setConcurrentConsumers(1);
+        container.setAcknowledgeMode(AcknowledgeMode.MANUAL); //设置确认模式手工确认
+        container.setMessageListener(new ChannelAwareMessageListener() {
+
+            @Override
+            public void onMessage(Message message, Channel channel) throws Exception {
+                byte[] body = message.getBody();
+                System.out.println("receive msg : " + new String(body));
+                channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); //确认消息成功消费
+            }
+        });
+        return container;
+    }*/
 }

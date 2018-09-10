@@ -14,7 +14,7 @@ import java.io.IOException;
  * @description: 消费者一对一
  */
 @Component
-public class CustomerOneToOne {
+public class CustomerDemo {
 
     // 监听fds-queue
 

@@ -9,11 +9,13 @@ import java.util.List;
  * @date: 2018/8/6
  * @description: 描述
  */
-public class UserInfo implements Serializable {
+public class InfoModel implements Serializable {
 
     private String code;
 
     private String name;
+
+    private String bookName;
 
     private List<String> jobs;
 
@@ -51,11 +53,20 @@ public class UserInfo implements Serializable {
         this.createDate = createDate;
     }
 
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
     @Override
     public String toString() {
-        return "UserInfo{" +
+        return "InfoModel{" +
                 "code='" + code + '\'' +
                 ", name='" + name + '\'' +
+                ", bookName='" + bookName + '\'' +
                 ", jobs=" + jobs +
                 ", createDate=" + createDate +
                 '}';

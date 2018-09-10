@@ -1,6 +1,6 @@
 package com.example.mq.component;
 
-import com.example.mq.model.UserInfo;
+import com.example.mq.model.InfoModel;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class CustomerOneToMany1 {
 
     @RabbitHandler
-    public void process(UserInfo userInfo) {
-        System.out.println("测试mq消费者一对多1  : " + userInfo);
+    public void process(InfoModel infoModel) {
+        System.out.println("测试mq消费者一对多1  : " + infoModel);
     }
 }

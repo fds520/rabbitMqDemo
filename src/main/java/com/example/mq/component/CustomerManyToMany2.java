@@ -1,9 +1,7 @@
 package com.example.mq.component;
 
-import com.example.mq.model.UserInfo;
+import com.example.mq.model.InfoModel;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.stereotype.Component;
 
 /**
  * @author: fds
@@ -15,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class CustomerManyToMany2 {
 
     @RabbitHandler
-    public void process(UserInfo userInfo) {
-        System.out.println("测试mq消费者多对多2  : " + userInfo);
+    public void process(InfoModel infoModel) {
+        System.out.println("测试mq消费者多对多2  : " + infoModel);
     }
 }

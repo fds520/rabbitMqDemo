@@ -49,13 +49,12 @@ public class MqConfig {
         return connectionFactory;
     }
 
-    @Bean
+/*    @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    //必须是prototype类型
+    // 必须是prototype类型
     public RabbitTemplate rabbitTemplate() {
-        RabbitTemplate template = new RabbitTemplate(connectionFactory());
-        return template;
-    }
+        return new RabbitTemplate(connectionFactory());
+    }*/
 
     /**
      * 针对消费者配置
@@ -68,50 +67,32 @@ public class MqConfig {
      DirectExchange:按照routingkey分发到指定队列
      TopicExchange:多关键字匹配
      */
-    @Bean
+/*    @Bean
     public DirectExchange defaultExchange() {
         return new DirectExchange(EXCHANGE);
-    }
+    }*/
 
     @Bean
     public Queue queue() {
-        return new Queue("spring-boot-queue", true); //队列持久
+
+        // 创建spring-boot-queue队列 并且持久化
+        return new Queue("fds-queue", true);
 
     }
 
-    @Bean
+/*    @Bean
     public Binding binding() {
         return BindingBuilder.bind(queue()).to(defaultExchange()).with(MqConfig.ROUTINGKEY);
-    }
+    }*/
 
     @Bean
     public RabbitListenerContainerFactory<?> rabbitListenerContainerFactory(ConnectionFactory connectionFactory){
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
         factory.setMessageConverter(new Jackson2JsonMessageConverter());
-        factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);             //开启手动 ack
+
+        // 开启手动 ack确认消息消费
+        factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
         return factory;
     }
-
-    /*
-    *
-    * @Bean
-    public SimpleMessageListenerContainer messageContainer() {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory());
-        container.setQueues(queue());
-        container.setExposeListenerChannel(true);
-        container.setMaxConcurrentConsumers(1);
-        container.setConcurrentConsumers(1);
-        container.setAcknowledgeMode(AcknowledgeMode.MANUAL); //设置确认模式手工确认
-        container.setMessageListener(new ChannelAwareMessageListener() {
-
-            @Override
-            public void onMessage(Message message, Channel channel) throws Exception {
-                byte[] body = message.getBody();
-                System.out.println("receive msg : " + new String(body));
-                channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); //确认消息成功消费
-            }
-        });
-        return container;
-    }*/
 }

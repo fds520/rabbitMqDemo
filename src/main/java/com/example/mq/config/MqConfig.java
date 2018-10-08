@@ -72,10 +72,13 @@ public class MqConfig {
         return new DirectExchange(EXCHANGE);
     }*/
 
+    /**
+     * 创建一个 fds-queue 消息队列
+     * @return
+     */
     @Bean
     public Queue queue() {
 
-        // 创建spring-boot-queue队列 并且持久化
         return new Queue("fds-queue", true);
 
     }
@@ -85,10 +88,17 @@ public class MqConfig {
         return BindingBuilder.bind(queue()).to(defaultExchange()).with(MqConfig.ROUTINGKEY);
     }*/
 
+    /**
+     *
+     * @param connectionFactory ConnectionFactory
+     * @return
+     */
     @Bean
-    public RabbitListenerContainerFactory<?> rabbitListenerContainerFactory(ConnectionFactory connectionFactory){
+    public RabbitListenerContainerFactory<?> rabbitListenerContainerFactory(final ConnectionFactory connectionFactory){
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
+
+        // 设置json解析
         factory.setMessageConverter(new Jackson2JsonMessageConverter());
 
         // 开启手动 ack确认消息消费

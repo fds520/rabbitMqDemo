@@ -21,8 +21,14 @@ import java.util.List;
 @Component
 public class ProducerDemo {
 
+    /**
+     *
+     */
     private static Integer i = 1;
 
+    /**
+     *
+     */
     @Autowired
     private AmqpTemplate rabbitTemplate;
 

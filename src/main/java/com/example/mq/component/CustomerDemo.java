@@ -16,21 +16,19 @@ import java.io.IOException;
 @Component
 public class CustomerDemo {
 
-    // 监听fds-queue
-
     /**
-     *
-     * @param order
-     * @param channel
-     * @param message
+     * 监听 fds-queue 消息队列
+     * @param infoModel InfoModel
+     * @param channel Channel 通道
+     * @param message Message 消息
      */
     @RabbitListener(queues = "fds-queue")
-    public void process(InfoModel order, Channel channel, Message message) {
+    public void process(final InfoModel infoModel, final Channel channel, final Message message) {
 
         try {
-            String a = null;
-            a.split("123");
-            System.out.println("测试mq消费者一对一  : " + order.toString());
+            // String a = null;
+            // a.split("123");
+            System.out.println("测试mq消费者一对一  : " + infoModel.toString());
             try {
                 // 确认消息成功消费
                 channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);

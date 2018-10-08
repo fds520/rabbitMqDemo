@@ -16,13 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rabbit")
 public class RabbitDemo {
 
+    /**
+     *
+     */
     @Autowired
     private ProducerDemo producerDemo;
 
     /**
      * 单生产者和单消费者
      */
-    @PostMapping("/oneToOne")
+    @PostMapping("/demo")
     public void oneToOne() {
         producerDemo.sendOneToOne();
     }

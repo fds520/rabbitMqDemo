@@ -38,7 +38,6 @@ public class ProducerDemo {
     public void sendOneToOne() {
         System.out.println("一对一测试mq消息生产" + i);
         InfoModel userInfoModel = new InfoModel();
-
         userInfoModel.setCode("一对一测试mq消息生产" + i++);
         userInfoModel.setName("东野圭吾");
         userInfoModel.setCreateDate(new Date());

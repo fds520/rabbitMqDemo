@@ -26,10 +26,13 @@ public class CustomerDemo {
     public void process(final InfoModel infoModel, final Channel channel, final Message message) {
 
         try {
+
+            // 创造一个空指针异常
             // String a = null;
             // a.split("123");
             System.out.println("测试mq消费者一对一  : " + infoModel.toString());
             try {
+
                 // 确认消息成功消费
                 channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
             } catch (IOException e) {
